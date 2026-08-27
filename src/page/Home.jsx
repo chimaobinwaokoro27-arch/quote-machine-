@@ -10,14 +10,14 @@ export default function Home() {
   const [loadingGrid, setLoadingGrid] = useState(true);
   const [errorMain, setErrorMain] = useState(null);
 
-  // Fetch Random Main Quote
+  
   const fetchRandomQuote = async () => {
     setLoadingMain(true);
     setErrorMain(null);
     try {
       const res = await fetch('https://dummyjson.com/quotes/random');
       if (!res.ok) throw new Error('Failed to fetch a new quote.');
-      const data = await res.json(); // Direct object shape { id, quote, author }
+      const data = await res.json(); 
       setFeaturedQuote(data);
     } catch (err) {
       setErrorMain(err.message);
@@ -26,13 +26,13 @@ export default function Home() {
     }
   };
 
-  // Fetch Grid Collection
+  
   const fetchCollection = async () => {
     setLoadingGrid(true);
     try {
       const res = await fetch('https://dummyjson.com/quotes?limit=9');
       if (!res.ok) throw new Error('Failed to load collection.');
-      const data = await res.json(); // Wrapped object shape { quotes: [...] }
+      const data = await res.json(); 
       setCollection(data.quotes || []);
     } catch (err) {
       console.error(err);
@@ -48,7 +48,7 @@ export default function Home() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 space-y-16">
-      {/* Featured Quote Section */}
+      
       <section className="min-h-[350px] flex items-center justify-center">
         {loadingMain ? (
           <SkeletonLoader />
@@ -71,7 +71,7 @@ export default function Home() {
         )}
       </section>
 
-      {/* Collection Grid Section */}
+      
       <section className="space-y-6">
         <h2 className="text-2xl font-mono tracking-tight text-stone-800 border-b border-stone-300 pb-2">
           Curated Collection
